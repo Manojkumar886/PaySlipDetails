@@ -58,5 +58,16 @@ public class EmployeeController
 		EmployeeDetails emp=service.gettingbyExactnumber(empid);
 		return pserv.getbyEmpDetails(emp);
 	}
-
+	
+	@GetMapping("/bytwo/{one},{two}")
+	public List<EmployeeDetails> callingFetchTwo(@PathVariable("one")double one,@PathVariable("two")String two)
+	{
+		return service.mekefetchSalaryName(one, two);
+	}
+	
+	@PutMapping("/bySalary/{name}")
+	public void updatinganSalary(@PathVariable("name")String name)
+	{
+		service.makeupdate(name);
+	}
 }
