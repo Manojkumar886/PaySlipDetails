@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.sun.istack.Nullable;
 
@@ -27,7 +29,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class EmployeeDetails
+public class EmployeeDetails implements UserDetails
 {
 //primarykey  //Auto-increment
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,5 +46,40 @@ public class EmployeeDetails
 	@Nullable
 	@JoinTable(name="AllRecords",joinColumns=@JoinColumn(name="empId"),inverseJoinColumns=@JoinColumn(name="payslipId"))
 	private Collection<PaySlipDetails> mypayslip=new ArrayList<PaySlipDetails>();
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return empPassword;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return empUsername;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
 }
