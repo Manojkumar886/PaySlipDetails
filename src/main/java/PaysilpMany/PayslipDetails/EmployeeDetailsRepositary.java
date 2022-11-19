@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 public interface EmployeeDetailsRepositary extends CrudRepository<EmployeeDetails, Integer>
 {
 	
+	public EmployeeDetails findByEmpUsername(String Username);
+	
 	@Transactional
 	@Modifying
 	@Query("update from EmployeeDetails set empIncome=empIncome+(empIncome*20/100) where empName=:emp")
